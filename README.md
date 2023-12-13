@@ -1,4 +1,4 @@
-##To train model and run evaluation:
+## To train model and run evaluation:
 
 Download and extract the europarl cs_en from https://www.statmt.org/europarl/ to datasets/europarl/ folder
 
