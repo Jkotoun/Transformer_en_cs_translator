@@ -1,0 +1,6 @@
+tensorflow
+pickle5
+keras_nlp
+bs4
+tqdm
+sacrebleu
