@@ -9,17 +9,19 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 import datetime
 import random
 import re
-from sacrebleu.metrics import CHRF
+from sacrebleu.metrics import CHRF, BLEU
 import time
 import sys
 # from keras import ops
 #hyperparameters
 MAX_SEQUENCE_LENGTH = 64
+eval_samples = 10
 
 transformer = keras.models.load_model('models_europarl/en_cs_translator_saved_20231209_0046.keras')
 def read_files(path, lowercase = False):
     with open(path, "r", encoding="utf-8") as f:
         dataset_split = f.read().split("\n")[:-1]
+    #to lowercase, idk why
     if(lowercase):
         dataset_split = [line.lower() for line in dataset_split]
     return dataset_split
@@ -146,13 +148,9 @@ def decode_sequences(input_sentence):
 
 test_en = read_files('datasets/europarl/test-cs-en.en')
 test_cs = read_files('datasets/europarl/test-cs-en.cs')
-bleu_metrics = keras_nlp.metrics.Bleu(
-    name="bleu", 
-    tokenizer = cs_tokenizer
-)
 
-eval_samples = 100
 chrf = CHRF() 
+bleu = BLEU()
 refs = test_cs[:eval_samples]
 translations = []
 start_time = time.time()
@@ -176,17 +174,17 @@ end_time = time.time()
 
 
 
+print("evaluating bleu", flush=True)
 
 refs_twodim = [[ref] for ref in refs]
-bleu_metrics(refs_twodim, translations)
 
 print("evaluating chrf", flush=True)
 chrf2_result = chrf.corpus_score(translations, refs_twodim)
-
+bleu_result = bleu.corpus_score(translations, refs_twodim)
 print("chrf2")
 print(chrf2_result)
 print("bleu")
-print(bleu_metrics.result().numpy())
-print("elapsed time")
+print(bleu_result)
 elapsed_time = end_time - start_time
+print("elapsed time")
 print(elapsed_time)
