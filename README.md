@@ -4,4 +4,9 @@ Download and extract the europarl cs_en from https://www.statmt.org/europarl/ to
 
 Install requirements using pip install -r requirements.txt
 
-Run scripts in order create_dataset_splits.py, train_tokenizers.py, preprocess_dataset.py, train.py and eval.py
+Run scripts in this order:
+- create_dataset_splits.py
+- train_tokenizers.py
+- preprocess_dataset.py
+- train.py
+- eval.py
