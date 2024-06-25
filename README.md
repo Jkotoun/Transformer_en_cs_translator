@@ -1,5 +1,5 @@
-# English to czech translator
-Simple english to czech seq2seq translator based on transformer architecture. The transformer model is built using Keras_NLP transformer encoder, transformer decoder and positional encoder. Decoding algorithms were implemented from scratch (Greedy and Beam search). Repository contains scripts to preprocess the europarl dataset, train WordPiece tokenizer, train the model and evaluate it. 
+# English to Czech translator
+Simple English to Czech seq2seq translator based on transformer architecture. The transformer model is built using Keras_NLP transformer encoder, transformer decoder and positional encoder. Decoding algorithms (Greedy and Beam search) were implemented from scratch. Repository contains scripts to preprocess the europarl dataset, train WordPiece tokenizer, train the transformer model and evaluate it. 
 
 ## To train model and run evaluation:
 
